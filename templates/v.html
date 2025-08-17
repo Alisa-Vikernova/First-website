@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/v/ - Видеоигры</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/stylerboard.css')}}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/logo3.png') }}" />
+</head>
+<body>
+    <div class="top-left">
+        <a href="/">Главная</a>
+        <hr>
+    </div>
+
+    <div class="main">
+        <img class="logo" src="{{ url_for('static', filename='images/v_2.png') }}">
+        <a href="/v"><h1>Video Games</h1></a>
+    </div>
+        <div class="forum">
+        <form method="POST" action="/v">
+            <input type="text" name="nickname" placeholder="Введите ник" value="{{ nickname }}" required>
+            <br>
+            <textarea name="content" rows="4" placeholder="Введите ваше сообщение" required></textarea>
+            <br>
+            <button type="submit">Отправить</button>
+        </form>
+        <div class="messages">
+            <h4>Сообщения:</h4>
+            <div class="message-list">
+                {% for message in messages %}
+                    <div class="message">
+                        <span class="nickname">{{ message.nickname }}</span>
+                        (<span class="timestamp">{{ message.timestamp }}</span>):>
+                        {{ message.content }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="strip"> </div>
+    <div class="navigator">
+        <img class="logo1"src="{{ url_for('static', filename='images/logo3.png') }}"> 
+        <h3>Доски</h3>
+        <div class="navigator-one">
+            <ol>
+                <li class="zag"><h5>Общая тематика</h5></li>
+                <li><a href="/a">Аниме и манга</a></li>
+                <li><a href="/bo">Книги</a></li>
+                <li><a href="/mus">Музыка</a></li>
+                <li><a href="/mov">Фильмы/Сериалы</a></li>
+                <li><a href="/v">Видеоигры</a></li>
+            </ol>
+            <ol>
+                <li class="zag1"><h5>18+</h5></li>
+                <li><a href="/b">Бред</a></li>
+                <li><a href="/e">Extreme pron</a></li>
+            </ol>
+        </div>
+
+    </div>
+</body>
+</html>

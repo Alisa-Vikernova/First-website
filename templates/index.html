@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инцелчан</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/logo3.png') }}" />
+</head>
+<body>
+    <img class="logo" src="{{ url_for('static', filename='images/logo3.png') }}">
+    <br>
+    <h5>Добро пожаловать. Снова.</h5>
+    <br>
+    <p class="op"><b>Инцелчан</b> - это система форумов, где можно общаться быстро и свободно, где любая точка зрения имеет право на жизнь.
+        <br>Здесь нет регистрации и подписываться не нужно, хотя это не избавляет вас от необходимости соблюдать правила. 
+        <br>Все форумы (кроме /Б/реда), а их список находится снизу, имеют собственную чётко ограниченную тематику. 
+        <br>Словом, всё, что не запрещено правилами отдельно взятого форума и относится к его тематике, на этом форуме разрешено.
+    </p>
+    <h2>Доски</h2>
+<div class="boards-container">
+    <div class="board">
+        <ol>
+            <li class="zag"><h3>Общая тематика</h3></li>
+            <li><a href="/a">Аниме и манга</a></li>
+            <li><a href="/bo">Книги</a></li>
+            <li><a href="/mus">Музыка</a></li>
+            <li><a href="/mov">Фильмы/Сериалы</a></li>
+            <li><a href="/v">Видеоигры</a></li>
+        </ol>
+    </div>
+
+    <div class="board">
+        <ol>
+            <li class="zag1"><h3>18+</h3></li>
+            <li><a href="/b">Бред</a></li>
+            <li><a href="/e">Extreme pron</a></li>
+        </ol>
+    </div>
+</div>
+
+
+
+</body>
+</html>
+
+

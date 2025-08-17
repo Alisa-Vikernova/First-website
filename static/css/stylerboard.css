@@ -1,0 +1,139 @@
+body { 
+    font-family: Tahoma;
+    background: rgb(21, 32, 42);
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.main {
+    align-items: center;
+    text-align: center; 
+}
+a {
+    color: rgb(195, 103, 42);
+    text-decoration: none;
+}
+.top-left {
+    padding-top: 10px;
+    width: 100%;
+    text-align: left;
+    z-index: 10;
+}
+.top-left a {
+    padding: 20px;
+}
+.navigator {
+    padding-left: 20px;
+    padding-top: 50px;
+    width: 10%;
+    text-align: left;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.navigator::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    right: -35px;
+    width: 3px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.37);
+}
+h3 {
+    color: #e0e0e0;
+}
+li {
+    padding-top: 10px;
+    list-style-type: none;
+}
+ol {
+    padding-left: 0px;
+}
+.logo1 {
+    width: 172px;
+}
+.zag1 {
+    color: red;
+}
+.zag {
+    color: #e0e0e0;
+}
+input {
+    border-radius: 10px;
+    width: 161px;
+    height: 20px;
+    background: rgb(30, 45, 60);
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.37);
+    padding: 5px;
+    font-family: Tahoma;
+}
+.logo {
+    width: 300px;
+    height: 100px;
+}
+.forum {
+    margin: 20px 0 20px 15%;
+    width: 70%;
+    text-align: left;
+    color: #e0e0e0;
+}
+.forum textarea {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    background: rgb(30, 45, 60);
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.37);
+    padding: 10px;
+    font-family: Tahoma;
+}
+.forum button {
+    background: rgb(195, 103, 42);
+    color: #e0e0e0;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: Tahoma;
+}
+.forum button:hover {
+    background: rgb(150, 80, 32);
+}
+.messages {
+    margin-top: 20px;
+    
+}
+.message {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.37);
+}
+.timestamp {
+    color: rgb(195, 103, 42);
+    font-size: 0.9em;
+}
+.nickname {
+    color: rgb(195, 103, 42);
+    font-weight: bold;
+}
+.message-list {
+    max-height: 49vh;
+    width: 121%; 
+    overflow-y: auto;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+.message-list::-webkit-scrollbar {
+    width: 8px;
+}
+.message-list::-webkit-scrollbar-thumb {
+    background: rgb(195, 103, 42);
+    border-radius: 4px;
+}
+.message-list::-webkit-scrollbar-track {
+    background: rgb(30, 45, 60);
+}
