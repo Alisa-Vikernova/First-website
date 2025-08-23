@@ -15,10 +15,13 @@ def init_db():
                 board TEXT NOT NULL, 
                 nickname TEXT NOT NULL, 
                 content TEXT NOT NULL, 
-                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP 
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                media_path TEXT 
             )
-        ''')  
-        conn.commit()  
+        ''')    
+        conn.commit()    
+        
+        
 
 
 with app.app_context(): 

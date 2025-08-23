@@ -121,7 +121,7 @@ input {
     font-weight: bold;
 }
 .message-list {
-    max-height: 49vh;
+    max-height: 47vh;
     width: 121%; 
     overflow-y: auto;
     padding-right: 10px;

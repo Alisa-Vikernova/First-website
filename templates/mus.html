@@ -17,27 +17,50 @@
         <img class="logo" src="{{ url_for('static', filename='images/mus_7.png') }}">
         <a href="/mus"><h1>Музыка</h1></a>
     </div>
-        <div class="forum">
-        <form method="POST" action="/mus">
+    <div class="forum">
+        <form method="POST" action="/mus" enctype="multipart/form-data">
             <input type="text" name="nickname" placeholder="Введите ник" value="{{ nickname }}" required>
             <br>
-            <textarea name="content" rows="4" placeholder="Введите ваше сообщение" required></textarea>
+            <textarea name="content" rows="4" placeholder="Введиту ваше сообщение" required></textarea>
+            <br>
+            <input type="file" name="media" accept=".jpg,.jpeg,.png,.gif,.mp4,.webm,.mp3,.wav">
             <br>
             <button type="submit">Отправить</button>
         </form>
         <div class="messages">
-            <h4>Сообщения:</h4>
-            <div class="message-list">
+            <h4>Сообщение:</h4>
+            <div class="message-list">    
                 {% for message in messages %}
-                    <div class="message">
-                        <span class="nickname">{{ message.nickname }}</span>
-                        (<span class="timestamp">{{ message.timestamp }}</span>):
-                        {{ message.content }}
+                    <div class="message">            
+                        <span class="nickname">{{ message.nickname }}</span>        
+                        (<span class="timestamp">{{ message.timestamp }}</span>):    
+                        <div>{{ message.content }}</div>
+                        {% if message.media_path %}
+                            {% set ext = message.media_path.split('.')[-1].lower() %}
+                            {% if ext in ['jpg', 'jpeg', 'png', 'gif'] %}
+                                <img src="{{ url_for('serve_uploaded_file', filename=message.media_path.split('/')[-1]) }}" alt="Media">
+                            {% elif ext in ['mp4', 'webm'] %}
+                                <video controls preload="auto">
+                                    <source src="{{ url_for('serve_uploaded_file', filename=message.media_path.split('/')[-1]) }}" type="video/{{ ext }}">
+                                   
+                                </video>
+                            {% elif ext in ['mp3'] %}
+                                <audio controls preload="auto">
+                                    <source src="{{ url_for('serve_uploaded_file', filename=message.media_path.split('/')[-1]) }}" type="audio/mpeg">
+                                    <source src="{{ url_for('serve_uploaded_file', filename=message.media_path.split('/')[-1]) }}" type="audio/mp3">
+                                </audio>
+                            {% elif ext in ['wav'] %}
+                                <audio controls preload="auto">
+                                    <source src="{{ url_for('serve_uploaded_file', filename=message.media_path.split('/')[-1]) }}" type="audio/wav">
+                                </audio>
+                            {% endif %}
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
         </div>
     </div>
+
     <div class="strip"> </div>
     <div class="navigator">
         <img class="logo1"src="{{ url_for('static', filename='images/logo3.png') }}"> 

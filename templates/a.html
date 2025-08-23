@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>/a/ - Аниме</title>
-    <link rel="stylesheet" href="{{url_for('static', filename = 'css/stylerboard.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylerboard.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/logo3.png') }}" />
+    <style>
+        .message img, .message video, .message audio {
+            max-width: 300px;
+            margin-top: 10px;
+        }
+        .message video, .message audio {
+            width: 300px;
+        }
+    </style>
 </head>
 <body>
     <div class="top-left">
@@ -17,21 +26,43 @@
         <a href="/a"><h1>Аниме и манга</h1></a>
     </div>
     <div class="forum">
-        <form method="POST" action="/a">
+        <form method="POST" action="/a" enctype="multipart/form-data">
             <input type="text" name="nickname" placeholder="Введите ник" value="{{ nickname }}" required>
             <br>
             <textarea name="content" rows="4" placeholder="Введите ваше сообщение" required></textarea>
             <br>
+            <input type="file" name="media" accept=".jpg,.jpeg,.png,.gif,.mp4,.webm,.mp3,.wav">
+            <br>
             <button type="submit">Отправить</button>
         </form>
         <div class="messages">
-            <h4>Сообщения:</h4>
+            <h4>Сообщение:</h4>
             <div class="message-list">    
                 {% for message in messages %}
                     <div class="message">            
                         <span class="nickname">{{ message.nickname }}</span>        
                         (<span class="timestamp">{{ message.timestamp }}</span>):    
-                        {{ message.content }}
+                        <div>{{ message.content }}</div>
+                        {% if message.media_path %}
+                            {% set ext = message.media_path.split('.')[-1].lower() %}
+                            {% if ext in ['jpg', 'jpeg', 'png', 'gif'] %}
+                                <img src="{{ url_for('serve_uploaded_file', filename=message.media_path.split('/')[-1]) }}" alt="Media">
+                            {% elif ext in ['mp4', 'webm'] %}
+                                <video controls preload="auto">
+                                    <source src="{{ url_for('serve_uploaded_file', filename=message.media_path.split('/')[-1]) }}" type="video/{{ ext }}">
+                                   
+                                </video>
+                            {% elif ext in ['mp3'] %}
+                                <audio controls preload="auto">
+                                    <source src="{{ url_for('serve_uploaded_file', filename=message.media_path.split('/')[-1]) }}" type="audio/mpeg">
+                                    <source src="{{ url_for('serve_uploaded_file', filename=message.media_path.split('/')[-1]) }}" type="audio/mp3">
+                                </audio>
+                            {% elif ext in ['wav'] %}
+                                <audio controls preload="auto">
+                                    <source src="{{ url_for('serve_uploaded_file', filename=message.media_path.split('/')[-1]) }}" type="audio/wav">
+                                </audio>
+                            {% endif %}
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
@@ -41,7 +72,7 @@
     <div class="strip"></div>
     <div class="navigator">
         <img class="logo1" src="{{ url_for('static', filename='images/logo3.png') }}"> 
-        <h3>Доски</h3>
+        <h3>Дошки</h3>
         <div class="navigator-one">
             <ol>
                 <li class="zag"><h5>Общая тематика</h5></li>
