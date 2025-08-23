@@ -16,7 +16,8 @@ def init_db():
                 nickname TEXT NOT NULL, 
                 content TEXT NOT NULL, 
                 timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-                media_path TEXT 
+                media_path TEXT,
+                ip TEXT
             )
         ''')    
         conn.commit()    
