@@ -7,6 +7,7 @@ import logging
 import random
 import os
 from werkzeug.utils import secure_filename
+from flask import send_file
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -27,6 +28,14 @@ def get_db_connection():
     conn = sqlite3.connect('forum.db')
     conn.row_factory = sqlite3.Row
     return conn
+
+
+@app.route("/download_db")
+def download_db():
+    try:
+        return send_file("forum.db", as_attachment=True)
+    except FileNotFoundError:
+        return "База не найдена"
 
 @app.route('/static/uploads/<path:filename>')
 def serve_uploaded_file(filename):
