@@ -136,4 +136,12 @@ input {
 }
 .message-list::-webkit-scrollbar-track {
     background: rgb(30, 45, 60);
+
+}
+.message img, .message video, .message audio {
+    max-width: 300px;
+    margin-top: 10px;
+}
+.message video, .message audio {
+    width: 300px;
 }
