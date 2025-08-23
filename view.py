@@ -13,7 +13,7 @@ from flask import send_file
 logging.basicConfig(level=logging.DEBUG)
 
 UPLOAD_FOLDER = 'static/uploads'
-ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif', 'mp4', 'webm', 'mp3', 'wav'}
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif', 'mp4', 'webm', 'mp3', 'wav', 'flac','aac','alac', 'ogg'}
 MAX_FILE_SIZE = 300 * 524 * 524
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = MAX_FILE_SIZE
